@@ -1,0 +1,5 @@
+const words=['ARCADE','ROBOT','PIXEL','GALAXY','SNAKE','ROCKET','GAMER','COIN','SPACE','RUNNER'];let word,score=0,round=0;
+function shuffle(s){return s.split('').sort(()=>Math.random()-.5).join('')}function start(){score=0;round=0;next()}
+function next(){if(round>=10){scramble.textContent='🏆';msg.textContent='Game complete! You crushed '+score/10+' cockroaches!';return}word=words[Math.floor(Math.random()*words.length)];scramble.textContent=shuffle(word);answer.value='';round++;document.getElementById('score').textContent=score/10;document.getElementById('round').textContent=round}
+function check(){if(!word||round>10)return;if(answer.value.trim().toUpperCase()===word){score+=10;msg.textContent='💥🪳 CRUSHED! Correct word!';next()}else{msg.textContent='❌ Wrong word — the cockroach escaped!'}document.getElementById('score').textContent=score/10}
+answer.addEventListener('keydown',e=>{if(e.key==='Enter')check()});start();

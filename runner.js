@@ -1,0 +1,8 @@
+const c=document.getElementById('game'),x=c.getContext('2d');let p,bugs,score,lives,running,last,spawn,attack;
+function start(){p={x:110,y:260,vy:0,on:true};bugs=[];score=0;lives=3;running=true;spawn=0;attack=0;last=performance.now();msg.textContent='Run and CRUSH the cockroaches!';requestAnimationFrame(loop)}
+function jump(){if(running&&p.on){p.vy=-600;p.on=false}}function crush(){if(!running)return;attack=180;let i=bugs.findIndex(b=>b.x<p.x+120&&b.x>p.x+20);if(i>=0){bugs.splice(i,1);score+=10}}
+addEventListener('keydown',e=>{if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();jump()}if(e.key.toLowerCase()==='x')crush()});
+function loop(t){if(!running)return;let dt=Math.min(.03,(t-last)/1000);last=t;p.vy+=1500*dt;p.y+=p.vy*dt;if(p.y>=260){p.y=260;p.vy=0;p.on=true}spawn-=dt;if(spawn<=0){bugs.push({x:820});spawn=Math.max(.45,1.25-score/700)+Math.random()*.4}
+for(let i=bugs.length-1;i>=0;i--){let b=bugs[i];b.x-=(260+score*.4)*dt;if(b.x<-50){bugs.splice(i,1);continue}if(b.x<p.x+55&&b.x+30>p.x&&p.y+55>250){bugs.splice(i,1);lives--;if(lives<=0){running=false;msg.textContent='GAME OVER — Score '+Math.floor(score)}}}
+score+=dt*2;document.getElementById('score').textContent=Math.floor(score);document.getElementById('lives').textContent=lives;draw();if(running)requestAnimationFrame(loop)}
+function draw(){x.clearRect(0,0,800,350);x.fillStyle='#111';x.fillRect(0,0,800,350);x.fillStyle='#332d20';x.fillRect(0,315,800,35);x.fillStyle='#f5c542';x.fillRect(0,311,800,4);x.font='45px serif';x.fillText('🏃',p.x,p.y+45);bugs.forEach(b=>{x.font='35px serif';x.fillText('🪳',b.x,305)});if(attack>0){x.font='26px monospace';x.fillStyle='#f5c542';x.fillText('CRUSH!',p.x+45,p.y-5);attack-=16}}draw();
