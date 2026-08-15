@@ -1,0 +1,13 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>🎮 Retro Games</title><link rel="stylesheet" href="style.css">
+<header class="title">🎮 RETRO GAMES<small>ARCADE • ORIGINAL RETRO MUSIC</small></header>
+<div class="mission">4 GAMES • LEVELS • SOUND • GRAPHICS • SETTINGS</div>
+<main class="menu">
+<a href="runner.html">🏃<b>COCKROACH CRUSHER</b><small>Run • Jump • Crush</small></a>
+<a href="snake.html">🐍<b>COCKROACH HUNTER</b><small>Move • Eat • Grow</small></a>
+<a href="shooter.html">🔫<b>COCKROACH SHOOTER</b><small>Move • Shoot • Survive</small></a>
+<a href="word.html">🔤<b>WORD ASSASSIN</b><small>Type • Solve • Crush</small></a></main>
+<div class="home-controls">↑ ↓ ← → MOVE &nbsp; SPACE ACTION &nbsp; ENTER START/SUBMIT &nbsp; ESC CLOSE</div>
+<div class="home-buttons"><button class="music-btn" onclick="toggleRetroMusic()">🎵 MUSIC: ON</button><button class="btn" onclick="show()">? HOW TO PLAY</button><button class="btn" onclick="show()">⚙ SETTINGS</button></div>
+<div style="color:#888;margin:8px">🎵 Retro background music starts after your first click, key press, or touch.</div>
+<div id="m" class="modal hidden"><div class="panel"><button class="close" onclick="m.classList.add('hidden')">✕</button><h2>HOW TO PLAY / SETTINGS</h2><p>Every game has levels, lives, score, graphics and sound effects.</p><p>Keyboard controls: ↑ ↓ ← →, SPACE, ENTER and ESC.</p><p>Use PAUSE and SOUND inside each game.</p><button class="btn" onclick="m.classList.add('hidden')">CLOSE</button></div></div>
+<script>function show(){m.classList.remove('hidden')}addEventListener('keydown',e=>{if(e.key==='Escape')m.classList.add('hidden')})</script><script src="music.js"></script><script>initRetroMusic();</script>
